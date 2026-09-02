@@ -1,17 +1,50 @@
-package bank.application;
+package bank.accounts;
 
-import bank.accounts.SavingsAccount;
+import bank.operations.BankOperations;
 
-public class BankApplication {
-    public static void main(String[] args) {
-        SavingsAccount account = new SavingsAccount(101, "Rahul", 5000.0);
+public class SavingsAccount implements BankOperations {
 
-        account.deposit(2000.0);
+private int accountNumber;
+private double balance;
+protected String accountHolderName;
 
-        account.withdraw(1000.0);
+public SavingsAccount(int accountNumber, String accountHolderName, double balance) {
+    this.accountNumber = accountNumber;
+    this.accountHolderName = accountHolderName;
+    this.balance = balance;
+}
 
-        account.checkBalance();
-
-        account.displayAccountDetails();
+@Override
+public void deposit(double amount) {
+    if (amount > 0) {
+        balance = balance + amount;
+        System.out.println("Deposited: " + amount);
+    } else {
+        System.out.println("Invalid deposit amount.");
     }
+}
+
+@Override
+public void withdraw(double amount) {
+    if (amount <= 0) {
+        System.out.println("Invalid withdrawal amount.");
+    } else if (amount <= balance) {
+        balance = balance - amount;
+        System.out.println("Withdrawn: " + amount);
+    } else {
+        System.out.println("Insufficient balance.");
+    }
+}
+
+@Override
+public void checkBalance() {
+    System.out.println("Current Balance: " + balance);
+}
+
+public void displayAccountDetails() {
+    System.out.println("Account Number: " + accountNumber);
+    System.out.println("Account Holder: " + accountHolderName);
+    System.out.println("Balance: " + balance);
+}
+
 }
