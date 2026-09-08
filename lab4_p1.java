@@ -4,12 +4,11 @@ interface Payment {
     void displayPaymentDetails();
 }
 
+
 class CreditCardPayment implements Payment {
-    private double amount;
     @Override
     public void makePayment(double amount) {
-        this.amount = amount;
-        System.out.println("Credit Card Payment of ₹" + amount + " made successfully.");
+        System.out.println("Credit Card payment of ₹" + amount + " made.");
     }
     @Override
     public void generateReceipt() {
@@ -18,16 +17,13 @@ class CreditCardPayment implements Payment {
     @Override
     public void displayPaymentDetails() {
         System.out.println("Payment Method: Credit Card");
-        System.out.println("Amount: ₹" + amount);
     }
 }
 
 class UPIPayment implements Payment {
-    private double amount;
     @Override
     public void makePayment(double amount) {
-        this.amount = amount;
-        System.out.println("UPI Payment of ₹" + amount + " made successfully.");
+        System.out.println("UPI payment of ₹" + amount + " made.");
     }
     @Override
     public void generateReceipt() {
@@ -36,16 +32,13 @@ class UPIPayment implements Payment {
     @Override
     public void displayPaymentDetails() {
         System.out.println("Payment Method: UPI");
-        System.out.println("Amount: ₹" + amount);
     }
 }
 
 class NetBankingPayment implements Payment {
-    private double amount;
     @Override
     public void makePayment(double amount) {
-        this.amount = amount;
-        System.out.println("Net Banking Payment of ₹" + amount + " made successfully.");
+        System.out.println("Net Banking payment of ₹" + amount + " made.");
     }
     @Override
     public void generateReceipt() {
@@ -54,9 +47,9 @@ class NetBankingPayment implements Payment {
     @Override
     public void displayPaymentDetails() {
         System.out.println("Payment Method: Net Banking");
-        System.out.println("Amount: ₹" + amount);
     }
 }
+
 
 public class Main {
     public static void main(String[] args) {
@@ -66,14 +59,14 @@ public class Main {
         p.makePayment(5000);
         p.generateReceipt();
         p.displayPaymentDetails();
-        System.out.println("----------------------------");
+        System.out.println("--------------------");
 
         // UPI Payment
         p = new UPIPayment();
         p.makePayment(2500);
         p.generateReceipt();
         p.displayPaymentDetails();
-        System.out.println("----------------------------");
+        System.out.println("--------------------");
 
         // Net Banking Payment
         p = new NetBankingPayment();
